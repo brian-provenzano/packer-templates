@@ -1,0 +1,23 @@
+{
+  "description" : "Simple 'test' packer template for jenkins",
+  "_comment": "Simple 'test' packer template for jenkins",
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-west-1",
+    "source_ami" : "ami-e69ebc86",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "jenkins-virgin-{{timestamp}}",
+      "tags": {
+        "OperatingSystem": "redhat",
+        "Release": "7.3",
+        "Purpose": "jenkins"
+  }
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "provision.sh"
+    }
+  ]
+}

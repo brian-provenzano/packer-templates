@@ -1,0 +1,22 @@
+{
+  "_comment": "Simple 'test' packer template for web",
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-west-1",
+    "source_ami" : "ami-e69ebc86",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "web-virgin-{{timestamp}}",
+      "tags": {
+        "OS_Version": "redhat",
+        "Release": "7.3",
+        "Purpose": "web"
+  }
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "provision.sh"
+    }
+  ]
+}
